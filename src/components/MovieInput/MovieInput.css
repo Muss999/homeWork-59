@@ -1,0 +1,29 @@
+.MovieInput {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 60%;
+    margin-bottom: 20px;
+}
+.MovieInput input {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.MovieInput button {
+    width: 10%;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.15s;
+}
+.MovieInput button:hover {
+    background-color: rgb(1, 101, 1);
+    transition: 0.15s;
+}
+.MovieInput button:active {
+    box-shadow: 0 0 6px 0 rgb(1, 101, 1);
+}
