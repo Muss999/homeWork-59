@@ -10,6 +10,19 @@ const App = () => {
         { name: "movie 2", id: crypto.randomUUID() },
     ]);
     const [currentMovie, setCurrentMovie] = useState("");
+    console.log(movies);
+    const changeMovieName = (
+        id: string,
+        event: ChangeEvent<HTMLInputElement>
+    ) => {
+        const updatedMovies: TypeMovie[] = movies.map((movie) => {
+            if (movie.id === id) {
+                return { ...movie, name: event.target.value };
+            }
+            return movie;
+        });
+        setMovies(updatedMovies);
+    };
 
     const addMovie = () => {
         if (!currentMovie) {
@@ -44,7 +57,11 @@ const App = () => {
                 value={currentMovie}
                 changeText={changeText}
             />
-            <MovieList movies={movies} deleteMovie={deleteMovie} />
+            <MovieList
+                movies={movies}
+                deleteMovie={deleteMovie}
+                changeMovieName={changeMovieName}
+            />
         </div>
     );
 };

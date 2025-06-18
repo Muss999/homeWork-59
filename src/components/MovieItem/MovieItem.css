@@ -4,14 +4,11 @@
     justify-content: space-between;
     width: 60%;
 }
-.MovieItem-textBlock {
-    border: 2px solid black;
-    padding: 10px;
+.MovieItem-input {
     width: 80%;
+    padding: 10px;
+    border: 2px solid black;
     border-radius: 10px;
-}
-.MovieItem-textBlock p {
-    margin: 0;
 }
 .MovieItem-deleteBtn {
     width: 10%;
