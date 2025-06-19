@@ -16,13 +16,14 @@ const App = () => {
         id: string,
         event: ChangeEvent<HTMLInputElement>
     ) => {
-        const updatedMovies: TypeMovie[] = movies.map((movie) => {
-            if (movie.id === id) {
-                return { ...movie, name: event.target.value };
-            }
-            return movie;
+        setMovies((prevState) => {
+            return prevState.map((movie) => {
+                if (movie.id === id) {
+                    return { ...movie, name: event.target.value };
+                }
+                return movie;
+            });
         });
-        setMovies(updatedMovies);
     };
 
     const addMovie = () => {
@@ -41,10 +42,9 @@ const App = () => {
     };
 
     const deleteMovie = (id: string) => {
-        const copyMovies: TypeMovie[] = movies.filter(
-            (movie) => movie.id !== id
-        );
-        setMovies(copyMovies);
+        setMovies((prevState) => {
+            return prevState.filter((movie) => movie.id !== id);
+        });
     };
 
     const changeText = (event: ChangeEvent<HTMLInputElement>) => {
