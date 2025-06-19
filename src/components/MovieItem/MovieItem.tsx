@@ -1,12 +1,12 @@
-import type { ChangeEventHandler, FC, MouseEventHandler } from "react";
+import type { ChangeEvent, FC } from "react";
 import type { TypeMovie } from "../../helpers/types";
 import { memo } from "react";
 import "./MovieItem.css";
 
 interface Props {
     movie: TypeMovie;
-    deleteMovie: MouseEventHandler;
-    changeMovieName: ChangeEventHandler<HTMLInputElement>;
+    deleteMovie: (id: string) => void;
+    changeMovieName: (id: string, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const MovieItem: FC<Props> = memo(
@@ -18,12 +18,12 @@ const MovieItem: FC<Props> = memo(
                     type="text"
                     value={movie.name}
                     className="MovieItem-input"
-                    onChange={changeMovieName}
+                    onChange={(event) => changeMovieName(movie.id, event)}
                 />
                 <button
                     type="button"
                     className="MovieItem-deleteBtn"
-                    onClick={deleteMovie}
+                    onClick={() => deleteMovie(movie.id)}
                 >
                     Delete
                 </button>

@@ -17,12 +17,10 @@ const MovieList: FC<Props> = (props) => {
                 {movies.map((movie) => {
                     return (
                         <MovieItem
-                            movie={movie}
                             key={movie.id}
-                            deleteMovie={() => deleteMovie(movie.id)}
-                            changeMovieName={(
-                                event: ChangeEvent<HTMLInputElement>
-                            ) => changeMovieName(movie.id, event)}
+                            movie={movie}
+                            deleteMovie={deleteMovie}
+                            changeMovieName={changeMovieName}
                         />
                     );
                 })}

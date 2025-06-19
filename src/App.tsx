@@ -11,6 +11,7 @@ const App = () => {
     ]);
     const [currentMovie, setCurrentMovie] = useState("");
     console.log(movies);
+
     const changeMovieName = (
         id: string,
         event: ChangeEvent<HTMLInputElement>
