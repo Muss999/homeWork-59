@@ -1,8 +1,10 @@
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import MovieInput from "./components/MovieInput/MovieInput";
 import type { TypeMovie } from "./helpers/types";
 import MovieList from "./components/MovieList.tsx/MovieList";
 import "./App.css";
+import Joke from "./components/Joke/Joke";
+import NewJokeBtn from "./components/NewJokeBtn/NewJokeBtn";
 
 const App = () => {
     const [movies, setMovies] = useState<TypeMovie[]>([
@@ -10,7 +12,19 @@ const App = () => {
         { name: "movie 2", id: crypto.randomUUID() },
     ]);
     const [currentMovie, setCurrentMovie] = useState("");
-    console.log(movies);
+    const [joke, setJoke] = useState("");
+
+    const fetchData = async () => {
+        const response = await fetch("https://api.chucknorris.io/jokes/random");
+        if (response.ok) {
+            const result = await response.json();
+            setJoke(result.value);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const changeMovieName = (
         id: string,
@@ -63,6 +77,8 @@ const App = () => {
                 deleteMovie={deleteMovie}
                 changeMovieName={changeMovieName}
             />
+            <NewJokeBtn newJoke={fetchData} />
+            <Joke text={joke} />
         </div>
     );
 };
